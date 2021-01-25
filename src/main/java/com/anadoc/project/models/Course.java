@@ -13,18 +13,20 @@ public class Course {
     @Column(unique = true)
     private String name;
     private String description;
-    private Date createdDate;
+    private String createdDate;
 
-    @OneToMany()
+    @OneToMany(mappedBy = "course")
     List<Document> documents;
 
     @ManyToOne
+    @JoinColumn(name = "commission")
     private Commission commission;
 
     @ManyToOne
+    @JoinColumn(name = "teacher")
     private Teacher teacher;
 
-    public Course(int id, String name, String description, Date createdDate, Commission commission, Teacher teacher) {
+    public Course(int id, String name, String description, String createdDate, Commission commission, Teacher teacher) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -55,11 +57,11 @@ public class Course {
         this.description = description;
     }
 
-    public Date getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
 

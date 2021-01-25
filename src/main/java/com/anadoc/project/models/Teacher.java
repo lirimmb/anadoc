@@ -13,7 +13,7 @@ public class Teacher {
     private int id;
     private String firstName;
     private String lastName;
-    private Date birthday;
+    private String birthday;
     @Column(unique = true)
     private String username;
     private String password;
@@ -21,21 +21,21 @@ public class Teacher {
     @OneToMany(mappedBy = "teacher")
     private List<Document> documents;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "commission")
     private Commission commission;
 
-    @OneToMany
+    @OneToMany(mappedBy = "teacher")
     private List<Course> courses;
 
 
-    public Teacher(int id, String firstName, String lastName, Date birthday, String username, String password, Commission commission) {
+    public Teacher(int id, String firstName, String lastName, String birthday, String username, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
         this.username = username;
         this.password = password;
-        this.commission = commission;
     }
 
     public Teacher(){}
@@ -60,11 +60,11 @@ public class Teacher {
         this.lastName = lastName;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

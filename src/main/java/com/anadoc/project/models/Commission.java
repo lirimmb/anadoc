@@ -12,18 +12,18 @@ public class Commission {
     private int id;
     private String firstName;
     private String lastName;
-    private Date birthday;
+    private String birthday;
     @Column(unique = true)
     private String username;
     private String password;
 
-    @OneToMany()
-    List<Teacher> teachers;
+    @OneToMany(mappedBy = "commission")
+    private List<Teacher> teachers;
 
-    @OneToMany()
-    List<Course> courses;
+    @OneToMany(mappedBy = "commission")
+    private List<Course> courses;
 
-    public Commission(int id, String firstName, String lastName, Date birthday, String username, String password) {
+    public Commission(int id, String firstName, String lastName, String birthday, String username, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,11 +54,11 @@ public class Commission {
         this.lastName = lastName;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

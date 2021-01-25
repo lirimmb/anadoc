@@ -16,7 +16,7 @@ public class Document {
     private String name;
     private String description;
     private String format;
-    private Date createdDate;
+    private String createdDate;
     private double fileSize;
 
     @ManyToOne
@@ -24,10 +24,11 @@ public class Document {
     private Teacher teacher;
 
     @ManyToOne
+    @JoinColumn(name = "course")
     private Course course;
 
 
-    public Document(int id, String name, String description, String format, Date createdDate, double fileSize) {
+    public Document(int id, String name, String description, String format, String createdDate, double fileSize) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -66,11 +67,11 @@ public class Document {
         this.format = format;
     }
 
-    public Date getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
 
