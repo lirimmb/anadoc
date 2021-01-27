@@ -35,7 +35,7 @@ public class TeacherService {
         return "Teacher deleted!";
     }
 
-    public Teacher updated(Teacher teacher){
+    public Teacher update(Teacher teacher){
         Teacher existingTeacher = teacherRepository.findById(teacher.getId()).orElse(null);
         existingTeacher.setFirstName(teacher.getFirstName());
         existingTeacher.setLastName(teacher.getLastName());
